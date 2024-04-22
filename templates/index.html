@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous" />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"></script>
+    <title>Deteksi Diabetes Dini</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row mx-0 justify-content-center">
+        <div
+          class="col-md-8 px-lg-2 col-lg-10 px-lg-2 col-xl-11 px-xl-0 px-xxl-3">
+          <h1>Deteksi Dini Diabetes Berdasarkan Faktor <b>Gejala</b></h1>
+          <form action="/predict" method="post">
+            <div>
+              <div>
+                <div class="form-floating mb-3">
+                  <input
+                    type="Number"
+                    class="form-control"
+                    id="age"
+                    name="age"
+                    required />
+                  <label for="age">Umur (Tahun)</label>
+                </div>
+              </div>
+              <div>
+                <div>
+                  <p>Jenis Kelamin</p>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="gender"
+                    id="gender_male"
+                    value="1" />
+                  <label class="form-check-label" for="gender_male"
+                    >Laki-laki</label
+                  >
+                </div>
+
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="gender"
+                    id="gender_female"
+                    value="0" />
+                  <label class="form-check-label" for="gender_female"
+                    >Perempuan</label
+                  >
+                  <br />
+                </div>
+              </div>
+              <div>
+                <div>
+                  <p>
+                    Apakah Anda sering merasa perlu buang air kecil dalam jumlah
+                    yang besar?
+                  </p>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="polyuria"
+                    id="polyuria_yes"
+                    value="1" />
+                  <label class="form-check-label" for="polyuria_yes">Iya</label>
+                </div>
+
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="polyuria"
+                    id="polyuria_no"
+                    value="0" />
+                  <label class="form-check-label" for="polyuria_no"
+                    >Tidak</label
+                  >
+                </div>
+              </div>
+              <div>
+                <div>
+                  <p>
+                    Apakah Anda merasa sering haus secara berlebihan akhir-akhir
+                    ini?
+                  </p>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="polydipsia"
+                    id="polydipsia_yes"
+                    value="1" />
+                  <label class="form-check-label" for="polydipsia_yes"
+                    >Iya</label
+                  >
+                </div>
+
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="polydipsia"
+                    id="polydipsia_no"
+                    value="0" />
+                  <label class="form-check-label" for="polydipsia_no"
+                    >Tidak</label
+                  >
+                </div>
+              </div>
+              <div>
+                <div>
+                  <p>
+                    Apakah Anda mengalami penurunan berat badan yang tiba-tiba
+                    tanpa alasan yang jelas dalam beberapa waktu terakhir?
+                  </p>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="sudden_weight_loss"
+                    id="udden_weight_loss_yes"
+                    value="1" />
+                  <label class="form-check-label" for="udden_weight_loss_yes"
+                    >Iya</label
+                  >
+                </div>
+
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="sudden_weight_loss"
+                    id="sudden_weight_loss_no"
+                    value="0" />
+                  <label class="form-check-label" for="sudden_weight_loss_no"
+                    >Tidak</label
+                  >
+                </div>
+              </div>
+              <div>
+                <div>
+                  <p>
+                    Apakah Anda sering merasa lemah (mudah kelelahan) belakangan
+                    ini?
+                  </p>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="weakness"
+                    id="weakness_yes"
+                    value="1" />
+                  <label class="form-check-label" for="weakness_yes">Iya</label>
+                </div>
+
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="weakness"
+                    id="weakness_no"
+                    value="0" />
+                  <label class="form-check-label" for="weakness_no"
+                    >Tidak</label
+                  >
+                </div>
+              </div>
+              <div>
+                <div>
+                  <p>
+                    Apakah Anda mengalami peningkatan nafsu makan yang
+                    signifikan baru-baru ini?
+                  </p>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="polyphagia"
+                    id="polyphagia_yes"
+                    value="1" />
+                  <label class="form-check-label" for="polyphagia_yes"
+                    >Iya</label
+                  >
+                </div>
+
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="polyphagia"
+                    id="polyphagia_no"
+                    value="0" />
+                  <label class="form-check-label" for="polyphagia_no"
+                    >Tidak</label
+                  >
+                </div>
+              </div>
+              <div>
+                <div>
+                  <p>
+                    Apakah Anda mengalami infeksi jamur di daerah genital
+                    baru-baru ini?
+                  </p>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="genital_thrush"
+                    id="genital_thrush_yes"
+                    value="1" />
+                  <label class="form-check-label" for="genital_thrush_yes"
+                    >Iya</label
+                  >
+                </div>
+
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="genital_thrush"
+                    id="genital_thrush_no"
+                    value="0" />
+                  <label class="form-check-label" for="genital_thrush_no"
+                    >Tidak</label
+                  >
+                </div>
+              </div>
+              <div>
+                <div>
+                  <p>Apakah Anda mengalami kabur penglihatan belakangan ini?</p>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="visual_blurring"
+                    id="visual_blurring_yes"
+                    value="1" />
+                  <label class="form-check-label" for="visual_blurring_yes"
+                    >Iya</label
+                  >
+                </div>
+
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="visual_blurring"
+                    id="visual_blurring_no"
+                    value="0" />
+                  <label class="form-check-label" for="visual_blurring_no"
+                    >Tidak</label
+                  >
+                </div>
+              </div>
+              <div>
+                <div>
+                  <p>Apakah Anda sering merasa gatal baru-baru ini?</p>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="itching"
+                    id="itching_yes"
+                    value="1" />
+                  <label class="form-check-label" for="itching_yes">Iya</label>
+                </div>
+
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="itching"
+                    id="itching_no"
+                    value="0" />
+                  <label class="form-check-label" for="itching_no">Tidak</label>
+                </div>
+              </div>
+              <div>
+                <div>
+                  <p>
+                    Apakah Anda merasa lebih mudah tersinggung atau marah
+                    belakangan ini?
+                  </p>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="iritabilitas"
+                    id="iritabilitas_yes"
+                    value="1" />
+                  <label class="form-check-label" for="iritabilitas_yes"
+                    >Iya</label
+                  >
+                </div>
+
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="iritabilitas"
+                    id="iritabilitas_no"
+                    value="0" />
+                  <label class="form-check-label" for="iritabilitas_no"
+                    >Tidak</label
+                  >
+                </div>
+              </div>
+              <div>
+                <div>
+                  <p>
+                    Apakah Anda menyadari bahwa luka Anda membutuhkan waktu
+                    lebih lama untuk sembuh daripada biasanya?
+                  </p>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="delayed_healing"
+                    id="delayed_healing_yes"
+                    value="1" />
+                  <label class="form-check-label" for="delayed_healing_yes"
+                    >Iya</label
+                  >
+                </div>
+
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="delayed_healing"
+                    id="delayed_healing_no"
+                    value="0" />
+                  <label class="form-check-label" for="delayed_healing_no"
+                    >Tidak</label
+                  >
+                </div>
+              </div>
+              <div>
+                <div>
+                  <p>
+                    Apakah Anda mengalami kelemahan atau kelumpuhan sebagian
+                    pada tubuh Anda belakangan ini?
+                  </p>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="partial_paresis"
+                    id="partial_paresis_yes"
+                    value="1" />
+                  <label class="form-check-label" for="partial_paresis_yes"
+                    >Iya</label
+                  >
+                </div>
+
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="partial_paresis"
+                    id="partial_paresis_no"
+                    value="0" />
+                  <label class="form-check-label" for="partial_paresis_no"
+                    >Tidak</label
+                  >
+                </div>
+              </div>
+              <div>
+                <div>
+                  <p>
+                    Apakah Anda merasakan kekakuan pada otot-otot Anda baru-baru
+                    ini?
+                  </p>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="muscle_stiffness"
+                    id="muscle_stiffness_yes"
+                    value="1" />
+                  <label class="form-check-label" for="muscle_stiffness_yes"
+                    >Iya</label
+                  >
+                </div>
+
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="muscle_stiffness"
+                    id="muscle_stiffness_no"
+                    value="0" />
+                  <label class="form-check-label" for="muscle_stiffness_no"
+                    >Tidak</label
+                  >
+                </div>
+              </div>
+              <div>
+                <div>
+                  <p>
+                    Apakah Anda mengalami kerontokan/kehilangan rambut yang
+                    tidak biasa atau lebih banyak dari biasanya baru-baru ini?
+                  </p>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="alopecia"
+                    id="alopecia_yes"
+                    value="1" />
+                  <label class="form-check-label" for="alopecia_yes">Iya</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="alopecia"
+                    id="alopecia_no"
+                    value="0" />
+                  <label class="form-check-label" for="alopecia_no"
+                    >Tidak</label
+                  >
+                </div>
+              </div>
+              <div>
+                <div>
+                  <p>
+                    Apakah Anda merasa bahwa berat badan Anda saat ini berada
+                    dalam kategori obesitas (Kegemukan secara fisik)?
+                  </p>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="obesity"
+                    id="obesity_yes"
+                    value="1" />
+                  <label class="form-check-label" for="obesity_yes">Iya</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="obesity"
+                    id="obesity_no"
+                    value="0" />
+                  <label class="form-check-label" for="obesity_no">Tidak</label>
+                </div>
+              </div>
+
+              <!-- button submit -->
+
+              <div class="mb-3">
+                <button
+                  type="submit"
+                  value="predict"
+                  class="btn btn-primary px-3 rounded-3">
+                  Send Answers
+                </button>
+              </div>
+            </div>
+          </form>
+          <div class="hasil">
+            <!-- {% if prediction %}
+            <p>Hasil Prediksi: "{{ prediction }}"</p>
+            {% endif %} -->
+            {% if prediction == 0 %}
+            <p>Hasil: Tidak terdeteksi diabetes.</p>
+            <p>
+              Saran: Anda tampaknya aman dari diabetes. Namun, penting untuk
+              tetap menjaga gaya hidup sehat dan melakukan pemeriksaan rutin
+              untuk memastikan kesehatan Anda.
+            </p>
+            {% elif prediction == 1 %}
+            <p>Hasil: Terdeteksi diabetes.</p>
+            <p>
+              Saran: Anda telah dideteksi memiliki risiko diabetes. Penting
+              untuk segera berkonsultasi dengan dokter dan mengikuti rekomendasi
+              mereka untuk mengelola kondisi Anda. Jangan menunda untuk
+              mendapatkan diagnosis dan perawatan yang tepat.
+            </p>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
