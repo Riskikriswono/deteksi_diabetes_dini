@@ -5,7 +5,7 @@ import joblib
 app = Flask(__name__)
 
 # Muat model deteksi diabetes dini
-model = joblib.load('D:/Documents/Py/myapp/model/rf_model.pkl')
+model = joblib.load('model/rf_model.pkl')
 
 @app.route('/')
 def home():
