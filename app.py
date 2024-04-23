@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 from waitress import serve
+from deteksi_diabetes_dini import app
 import waitress_config
 import numpy as np
 import joblib
