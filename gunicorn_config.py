@@ -1,8 +1,6 @@
 # bind ="0.0.0.0:8080"
 # workers = 2
 
-# gunicorn_config.py
-
 # Bind address and port
 bind = '0.0.0.0:8000'
 

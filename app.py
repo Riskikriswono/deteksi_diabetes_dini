@@ -1,4 +1,6 @@
 from flask import Flask, render_template, request
+from waitress import serve
+import waitress_config
 import numpy as np
 import joblib
 
@@ -42,4 +44,5 @@ def predict():
     return render_template('index.html', prediction=prediction)
 
 if __name__ == '__main__':
+    serve(app, host=waitress_config.host, port=waitress_config.port)
     app.run(debug=True)
