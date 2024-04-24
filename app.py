@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request
 from waitress import serve
-from deteksi_diabetes_dini import app
-import waitress_config
+# from app import app
+# import waitress_config
 import numpy as np
 import joblib
 
@@ -45,5 +45,7 @@ def predict():
     return render_template('index.html', prediction=prediction)
 
 if __name__ == '__main__':
-    serve(app, host=waitress_config.host, port=waitress_config.port)
+    # serve(app, host='127.0.0.1', port=5000)
+    serve(app, host='0.0.0.0', port=8080)
+    # serve(app, host=waitress_config.host, port=waitress_config.port)
     app.run(debug=True)
